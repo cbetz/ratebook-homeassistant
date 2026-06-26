@@ -1,0 +1,25 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Ratebook",
+        "description": "Choose a bundled example tariff or paste a Ratebook tariff JSON, then set the charge-window length.",
+        "data": {
+          "tariff_source": "Tariff",
+          "tariff_json": "Custom tariff JSON (used only when Tariff is \"custom\")",
+          "charge_hours": "Charge-window length (hours)",
+          "currency": "Currency"
+        }
+      }
+    },
+    "error": {
+      "invalid_tariff": "That tariff could not be loaded. Check the JSON, or pick a bundled tariff."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "electricity_price": { "name": "Electricity price" },
+      "cheapest_charge_window": { "name": "Cheapest charge window" }
+    }
+  }
+}

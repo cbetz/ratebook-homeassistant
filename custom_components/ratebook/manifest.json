@@ -1,0 +1,12 @@
+{
+  "domain": "ratebook",
+  "name": "Ratebook",
+  "codeowners": ["@cbetz"],
+  "config_flow": true,
+  "documentation": "https://github.com/cbetz/ratebook/tree/main/packages/ratebook-homeassistant",
+  "integration_type": "service",
+  "iot_class": "calculated",
+  "issue_tracker": "https://github.com/cbetz/ratebook/issues",
+  "requirements": [],
+  "version": "0.0.1"
+}
