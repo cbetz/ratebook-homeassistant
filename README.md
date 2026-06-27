@@ -2,6 +2,8 @@
 
 # Ratebook for Home Assistant
 
+[![Open your Home Assistant instance and open this repository inside HACS.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=cbetz&repository=ratebook-homeassistant&category=integration)
+
 A Home Assistant custom integration that turns a US electricity tariff into live
 electricity-price sensors and a cheapest-charge-window sensor — the price signal that EV
 chargers, [evcc](https://evcc.io), [EMHASS](https://emhass.readthedocs.io), and HA automations
