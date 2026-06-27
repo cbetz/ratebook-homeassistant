@@ -16,6 +16,7 @@ type RatebookConfigEntry = ConfigEntry[RatebookCoordinator]
 async def async_setup_entry(hass: HomeAssistant, entry: RatebookConfigEntry) -> bool:
     """Set up Ratebook from a config entry."""
     coordinator = RatebookCoordinator(hass, entry)
+    await coordinator.async_load_tariff()
     await coordinator.async_config_entry_first_refresh()
     entry.runtime_data = coordinator
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)

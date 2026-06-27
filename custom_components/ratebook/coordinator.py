@@ -34,7 +34,13 @@ class RatebookCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         self.charge_hours: int = entry.options.get(
             CONF_CHARGE_HOURS, entry.data.get(CONF_CHARGE_HOURS, DEFAULT_CHARGE_HOURS)
         )
-        self._tariff = self._load_tariff(entry)
+        # Loaded off the event loop in async_load_tariff() — reading bundled tariff files is
+        # blocking I/O and must not run inside Home Assistant's async loop.
+        self._tariff = None
+
+    async def async_load_tariff(self) -> None:
+        """Load the configured tariff in an executor (the file read is blocking I/O)."""
+        self._tariff = await self.hass.async_add_executor_job(self._load_tariff, self.entry)
 
     @staticmethod
     def _load_tariff(entry: ConfigEntry):
