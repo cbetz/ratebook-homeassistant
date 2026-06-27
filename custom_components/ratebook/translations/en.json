@@ -10,6 +10,16 @@
           "charge_hours": "Charge-window length (hours)",
           "currency": "Currency"
         }
+      },
+      "reconfigure": {
+        "title": "Reconfigure Ratebook",
+        "description": "Switch the tariff, charge-window length, or currency.",
+        "data": {
+          "tariff_source": "Tariff",
+          "tariff_json": "Custom tariff JSON (used only when Tariff is \"custom\")",
+          "charge_hours": "Charge-window length (hours)",
+          "currency": "Currency"
+        }
       }
     },
     "error": {
