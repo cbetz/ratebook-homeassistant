@@ -58,11 +58,13 @@ class RatebookConfigFlow(ConfigFlow, domain=DOMAIN):
             except Exception:
                 errors["base"] = "invalid_tariff"
             if not errors:
+                label = "Custom tariff" if source == CUSTOM else source
                 if step_id == "reconfigure":
                     return self.async_update_reload_and_abort(
-                        self._get_reconfigure_entry(), data_updates=user_input
+                        self._get_reconfigure_entry(),
+                        data_updates=user_input,
+                        title=f"Ratebook ({label})",
                     )
-                label = "Custom tariff" if source == CUSTOM else source
                 return self.async_create_entry(title=f"Ratebook ({label})", data=user_input)
 
         d = user_input or current

@@ -24,6 +24,9 @@
     },
     "error": {
       "invalid_tariff": "That tariff could not be loaded. Check the JSON, or pick a bundled tariff."
+    },
+    "abort": {
+      "reconfigure_successful": "Ratebook was reconfigured."
     }
   },
   "entity": {
