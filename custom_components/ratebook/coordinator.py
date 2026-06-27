@@ -49,7 +49,7 @@ class RatebookCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         tomorrow = today + timedelta(days=1)
         try:
             window = pricing.cheapest_window(
-                self._tariff, today, days=2, charge_hours=self.charge_hours
+                self._tariff, today, days=2, charge_hours=self.charge_hours, after=now
             )
         except Exception as err:  # malformed tariff / out-of-range
             raise UpdateFailed(f"price computation failed: {err}") from err

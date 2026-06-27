@@ -23,6 +23,7 @@ from dataclasses import dataclass, field
 from datetime import date, datetime, time, timedelta
 from decimal import Decimal
 from enum import StrEnum
+from math import ceil
 from typing import Any
 
 from .money import ZERO, decimal_to_json, to_decimal
@@ -541,24 +542,40 @@ def hourly_marginal_prices(
 
 
 def cheapest_charge_window(
-    tariff: Tariff, window: BillingWindow, charge_hours: int, *, tier: int = 0
+    tariff: Tariff,
+    window: BillingWindow,
+    charge_hours: int,
+    *,
+    tier: int = 0,
+    not_before: datetime | None = None,
 ) -> ChargeWindow:
     """Find the cheapest contiguous ``charge_hours``-long block in the window to add load.
 
     Minimizing the block's average marginal price minimizes the cost of charging a fixed amount
     of energy spread uniformly over the block. Ties resolve to the earliest start.
+
+    When ``not_before`` (a naive local datetime) is given, only blocks starting at or after it —
+    rounded up to the next whole hour — are considered, so a "when should I charge next?" caller
+    never gets a window that has already passed. If no such block fits in the window, the latest
+    block that does is returned.
     """
     prices = hourly_marginal_prices(tariff, window, tier=tier)
     if charge_hours <= 0 or charge_hours > len(prices):
         raise ValueError(
             f"charge_hours {charge_hours} out of range for a {len(prices)}-hour window"
         )
-    best_start, best_sum = 0, None
-    for i in range(len(prices) - charge_hours + 1):
+    window_start = datetime.combine(window.start, time())
+    last_start = len(prices) - charge_hours
+    first_start = 0
+    if not_before is not None:
+        offset_hours = (not_before.replace(tzinfo=None) - window_start).total_seconds() / 3600
+        first_start = min(max(0, ceil(offset_hours)), last_start)
+    best_start, best_sum = first_start, None
+    for i in range(first_start, last_start + 1):
         block_sum = sum(prices[i : i + charge_hours], ZERO)
         if best_sum is None or block_sum < best_sum:
             best_sum, best_start = block_sum, i
-    start_dt = datetime.combine(window.start, time()) + timedelta(hours=best_start)
+    start_dt = window_start + timedelta(hours=best_start)
     return ChargeWindow(
         start=start_dt,
         hours=charge_hours,

@@ -55,9 +55,21 @@ def current_price(tariff: Tariff, now: datetime) -> float:
     return float(prices[now.hour])
 
 
-def cheapest_window(tariff: Tariff, start: date, *, days: int, charge_hours: int) -> dict[str, Any]:
-    """Cheapest contiguous ``charge_hours`` block over ``days`` from ``start`` (EV charging)."""
-    cw = cheapest_charge_window(tariff, BillingWindow(start, days), charge_hours)
+def cheapest_window(
+    tariff: Tariff,
+    start: date,
+    *,
+    days: int,
+    charge_hours: int,
+    after: datetime | None = None,
+) -> dict[str, Any]:
+    """Cheapest contiguous ``charge_hours`` block over ``days`` from ``start`` (EV charging).
+
+    Pass ``after`` (e.g. ``now``) so the suggested window is always upcoming, never in the past.
+    """
+    cw = cheapest_charge_window(
+        tariff, BillingWindow(start, days), charge_hours, not_before=after
+    )
     return {
         "start": cw.start.isoformat(),
         "end": (cw.start + timedelta(hours=charge_hours)).isoformat(),
