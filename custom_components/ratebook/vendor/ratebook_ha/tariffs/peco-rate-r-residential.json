@@ -1,28 +1,28 @@
 {
   "schema_version": 0,
   "identity": {
-    "utility_id": "Massachusetts Electric Co",
-    "eiaid": 11804,
+    "utility_id": "PECO Energy Co",
+    "eiaid": 14940,
     "jurisdiction": null,
-    "plan_code": "",
-    "plan_name": "R-1 Residential",
+    "plan_code": "R",
+    "plan_name": "Residential Service (R)",
     "sector": "residential",
     "is_default_plan": true,
     "tariff_type": "bundled"
   },
   "effective_range": {
-    "start": "2026-04-01",
+    "start": "2026-06-01",
     "end": null,
     "superseded_at": null,
-    "scheduled_end": "2026-07-31"
+    "scheduled_end": "2026-12-01"
   },
   "energy": {
     "periods": [
       {
         "tiers": [
           {
-            "rate": "0.22012",
-            "adj": "0.15372",
+            "rate": "0.10276",
+            "adj": "0.13130",
             "max": null,
             "max_unit": "kWh",
             "sell": null
@@ -664,16 +664,16 @@
   },
   "fixed_charges": [
     {
-      "amount": "10",
+      "amount": "11.3",
       "unit": "$/month"
     }
   ],
   "min_charge": null,
   "unsupported": [],
-  "metering": "net_metering",
+  "metering": "none",
   "source_documents": [
     {
-      "url": "https://www.nationalgridus.com/media/pdfs/billing-payments/tariffs/mae/meco_delivery.pdf",
+      "url": "https://azure-na-assets.contentstack.com/v3/assets/blt1b5616c79bacadb4/bltef2bb157cc587eac/695440f39dd7d11ce0542224/Pages_52_Rate_R_from_clean_up_pages_for_ICUS_FARS_Supp_no._21_eff_Jan_1_2026.pdf",
       "role": "rate_sheet",
       "source_type": "pdf_url",
       "sha256": null,
@@ -685,7 +685,31 @@
       "locator": null
     },
     {
-      "url": "https://www.nationalgridus.com/media/pdfs/billing-payments/tariffs/mae/meco_basic_service.pdf",
+      "url": "http://www.energychoicematters.com/stories/20260416d.html",
+      "role": "verification",
+      "source_type": "html_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "http://www.energychoicematters.com/stories/20251016a.html",
+      "role": "verification",
+      "source_type": "html_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://azure-na-assets.contentstack.com/v3/assets/blt1b5616c79bacadb4/blt43effffcc7902471/680118495c863534c05c17c6/Elec_Service_Tariff_No._8_GSA_Supp_No_4_eff_June_1.pdf",
       "role": "verification",
       "source_type": "pdf_url",
       "sha256": null,
@@ -697,9 +721,9 @@
       "locator": null
     },
     {
-      "url": "https://www.nationalgridus.com/media/pdfs/billing-payments/electric-rates/ma/resitable.pdf",
+      "url": "https://electricityplans.com/pennsylvania/utilities/peco-energy/",
       "role": "verification",
-      "source_type": "pdf_url",
+      "source_type": "html_url",
       "sha256": null,
       "fetched_at": "2026-07-01",
       "http_status": null,
@@ -709,7 +733,31 @@
       "locator": null
     },
     {
-      "url": "https://www.nationalgridus.com/MA-Home/Rates/Service-Rates",
+      "url": "https://www.utilityrates.com/utility-companies/PECO",
+      "role": "verification",
+      "source_type": "html_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://www.chooseenergy.com/utilities/peco-pa-electricity/",
+      "role": "verification",
+      "source_type": "html_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://www.peco.com/MyAccount/MyService/Pages/ElectricPricetoCompare.aspx",
       "role": "verification",
       "source_type": "html_url",
       "sha256": null,
@@ -722,8 +770,8 @@
     }
   ],
   "provenance": {
-    "urdb_label": "67cf32f6ef8f02942e0586bd",
-    "urdb_latest_update": "2025-03-11",
+    "urdb_label": "69e650226746522c70079989",
+    "urdb_latest_update": "2026-04-20",
     "last_verified": "2026-07-01",
     "confidence": null,
     "snapshot_sha256": null

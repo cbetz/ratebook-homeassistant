@@ -3,15 +3,15 @@
   "identity": {
     "utility_id": "Public Service Elec & Gas Co",
     "eiaid": 15477,
-    "jurisdiction": null,
-    "plan_code": "",
+    "jurisdiction": "NJ",
+    "plan_code": "RS",
     "plan_name": "RS - Residential Service",
     "sector": "residential",
-    "is_default_plan": null,
-    "tariff_type": "unknown"
+    "is_default_plan": true,
+    "tariff_type": "bundled"
   },
   "effective_range": {
-    "start": "2026-04-01",
+    "start": "2026-06-01",
     "end": null,
     "superseded_at": null,
     "scheduled_end": null
@@ -22,14 +22,14 @@
         "tiers": [
           {
             "rate": "0.047989",
-            "adj": "0.012178",
+            "adj": "0.200633",
             "max": "600",
             "max_unit": "kWh",
             "sell": null
           },
           {
             "rate": "0.047989",
-            "adj": "0.012178",
+            "adj": "0.200633",
             "max": null,
             "max_unit": "kWh",
             "sell": null
@@ -40,14 +40,14 @@
         "tiers": [
           {
             "rate": "0.082602",
-            "adj": "0.012339",
+            "adj": "0.198256",
             "max": "600",
             "max_unit": "kWh",
             "sell": null
           },
           {
             "rate": "0.086677",
-            "adj": "0.01234",
+            "adj": "0.207752",
             "max": null,
             "max_unit": "kWh",
             "sell": null
@@ -696,11 +696,72 @@
   "min_charge": null,
   "unsupported": [],
   "metering": "net_metering",
-  "source_documents": [],
+  "source_documents": [
+    {
+      "url": "https://nj.pseg.com/-/media/pseg/public-site/documents/current-electric-tariff/electric-tariff-17-eem-effective-20260622.ashx",
+      "role": "rate_sheet",
+      "source_type": "html_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://nj.pseg.com/aboutpseg/regulatorypage/electrictariffs",
+      "role": "verification",
+      "source_type": "html_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://nj.pseg.com/-/media/pseg/public-site/documents/current-electric-tariff/2026-06-01-electric-sheets-81.ashx",
+      "role": "verification",
+      "source_type": "html_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://nj.pseg.com/aboutpseg/regulatorypage/electrictariffs/2026monthlyelectricreconciliationcharges",
+      "role": "verification",
+      "source_type": "html_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://nj.pseg.com/-/media/pseg/public-site/documents/current-electric-tariff/electric-tariff-17-sprc-effective-20260401.ashx",
+      "role": "verification",
+      "source_type": "html_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    }
+  ],
   "provenance": {
     "urdb_label": "69e244d3a999a8521d0fed8c",
     "urdb_latest_update": "2026-04-17",
-    "last_verified": null,
+    "last_verified": "2026-07-01",
     "confidence": null,
     "snapshot_sha256": null
   }

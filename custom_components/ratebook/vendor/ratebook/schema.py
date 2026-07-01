@@ -71,10 +71,42 @@ class DayType(StrEnum):
 
 
 class HolidayPolicy(StrEnum):
-    #: URDB carries no holiday dimension; v0 treats every day by its real weekday/weekend.
+    #: URDB carries no holiday dimension; ``unknown`` treats every day by its real
+    #: weekday/weekend. ``as_weekend`` prices the tariff's enumerated ``holidays`` on the
+    #: weekend schedule (the common US TOU rule: "holidays are off-peak"). ``as_weekday``
+    #: is the explicit no-op — the rate sheet says holidays get no special treatment.
     UNKNOWN = "unknown"
     AS_WEEKEND = "as_weekend"
     AS_WEEKDAY = "as_weekday"
+
+
+class Holiday(StrEnum):
+    """Named US holidays a rate sheet can reference — computed per-year by the engine.
+
+    A closed vocabulary rather than raw dates so a tariff stays valid every year without
+    data churn (Memorial Day, Thanksgiving, etc. move; the *rule* doesn't).
+    """
+
+    NEW_YEARS_DAY = "new_years_day"
+    MLK_DAY = "mlk_day"
+    WASHINGTONS_BIRTHDAY = "washingtons_birthday"
+    MEMORIAL_DAY = "memorial_day"
+    JUNETEENTH = "juneteenth"
+    INDEPENDENCE_DAY = "independence_day"
+    LABOR_DAY = "labor_day"
+    COLUMBUS_DAY = "columbus_day"
+    VETERANS_DAY = "veterans_day"
+    THANKSGIVING = "thanksgiving"
+    DAY_AFTER_THANKSGIVING = "day_after_thanksgiving"
+    CHRISTMAS = "christmas"
+
+
+class HolidayObservance(StrEnum):
+    #: ``sunday_to_monday`` — a holiday falling on Sunday is also observed the following
+    #: Monday (the prevailing utility rule, e.g. PG&E/SCE: "the dates on which the holidays
+    #: are legally observed"). ``actual_day`` — only the calendar date itself.
+    SUNDAY_TO_MONDAY = "sunday_to_monday"
+    ACTUAL_DAY = "actual_day"
 
 
 class Sector(StrEnum):
@@ -257,10 +289,15 @@ class Schedule:
     weekday: tuple[tuple[int, ...], ...]
     weekend: tuple[tuple[int, ...], ...]
     holiday_policy: HolidayPolicy = HolidayPolicy.UNKNOWN
+    #: The holidays the rate sheet names (meaningful only with ``as_weekend`` policy).
+    holidays: tuple[Holiday, ...] = ()
+    holiday_observance: HolidayObservance = HolidayObservance.SUNDAY_TO_MONDAY
 
     def __post_init__(self) -> None:
         _validate_matrix("weekday", self.weekday)
         _validate_matrix("weekend", self.weekend)
+        if len(set(self.holidays)) != len(self.holidays):
+            raise ValueError("schedule holidays must be unique")
 
     def period_at(self, day_type: DayType, month: int, hour: int) -> int:
         """``month`` is 1-12, ``hour`` is 0-23."""
@@ -275,11 +312,17 @@ class Schedule:
         return frozenset(out)
 
     def to_json(self) -> dict[str, Any]:
-        return {
+        out: dict[str, Any] = {
             "weekday": [list(r) for r in self.weekday],
             "weekend": [list(r) for r in self.weekend],
             "holiday_policy": self.holiday_policy.value,
         }
+        # Emitted only when set, so pre-holiday tariff JSONs round-trip byte-identically.
+        if self.holidays:
+            out["holidays"] = [h.value for h in self.holidays]
+        if self.holiday_observance is not HolidayObservance.SUNDAY_TO_MONDAY:
+            out["holiday_observance"] = self.holiday_observance.value
+        return out
 
     @classmethod
     def from_json(cls, d: dict[str, Any]) -> Schedule:
@@ -287,6 +330,10 @@ class Schedule:
             weekday=tuple(tuple(int(h) for h in row) for row in d["weekday"]),
             weekend=tuple(tuple(int(h) for h in row) for row in d["weekend"]),
             holiday_policy=HolidayPolicy(d.get("holiday_policy", HolidayPolicy.UNKNOWN.value)),
+            holidays=tuple(Holiday(h) for h in d.get("holidays", ())),
+            holiday_observance=HolidayObservance(
+                d.get("holiday_observance", HolidayObservance.SUNDAY_TO_MONDAY.value)
+            ),
         )
 
 

@@ -4,25 +4,25 @@
     "utility_id": "Connecticut Light & Power Co",
     "eiaid": 4176,
     "jurisdiction": null,
-    "plan_code": "",
+    "plan_code": "Rate 1",
     "plan_name": "Rate 1 - Residential Electric Service",
     "sector": "residential",
-    "is_default_plan": null,
-    "tariff_type": "unknown"
+    "is_default_plan": true,
+    "tariff_type": "bundled"
   },
   "effective_range": {
-    "start": "2026-01-01",
+    "start": "2026-07-01",
     "end": null,
     "superseded_at": null,
-    "scheduled_end": null
+    "scheduled_end": "2026-12-31"
   },
   "energy": {
     "periods": [
       {
         "tiers": [
           {
-            "rate": "0.05844",
-            "adj": "0.10428",
+            "rate": "0.12025",
+            "adj": "0.11577",
             "max": null,
             "max_unit": "kWh",
             "sell": null
@@ -671,11 +671,72 @@
   "min_charge": null,
   "unsupported": [],
   "metering": "net_metering",
-  "source_documents": [],
+  "source_documents": [
+    {
+      "url": "https://www.eversource.com/docs/default-source/rates-tariffs/ct-electric/rate-1-ct.pdf",
+      "role": "rate_sheet",
+      "source_type": "pdf_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://ctmirror.org/2026/05/15/eversource-ui-customers-summer-electricity-rates/",
+      "role": "verification",
+      "source_type": "html_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://portal.ct.gov/occ/-/media/occ/january-2026-consumer-alert-standard-service-rates.pdf?rev=b9f867d4d8f246a1aea1e63ac373d5f8",
+      "role": "verification",
+      "source_type": "pdf_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://gridshopper.com/ct/eversource/explainer",
+      "role": "verification",
+      "source_type": "html_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://www.energizect.com/rate-board-residential-standard-service-generation-rates",
+      "role": "verification",
+      "source_type": "html_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    }
+  ],
   "provenance": {
     "urdb_label": "6969332bd41988757a0409fc",
     "urdb_latest_update": "2026-01-15",
-    "last_verified": null,
+    "last_verified": "2026-07-01",
     "confidence": null,
     "snapshot_sha256": null
   }

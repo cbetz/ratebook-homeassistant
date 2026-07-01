@@ -4,14 +4,14 @@
     "utility_id": "Consolidated Edison Co-NY Inc",
     "eiaid": 4226,
     "jurisdiction": null,
-    "plan_code": "",
+    "plan_code": "SC1-I",
     "plan_name": "SC-1 - Residential & Religious Service - Zone J [NYC]",
     "sector": "residential",
-    "is_default_plan": null,
-    "tariff_type": "unknown"
+    "is_default_plan": true,
+    "tariff_type": "bundled"
   },
   "effective_range": {
-    "start": "2025-02-01",
+    "start": "2026-02-01",
     "end": null,
     "superseded_at": null,
     "scheduled_end": null
@@ -21,8 +21,8 @@
       {
         "tiers": [
           {
-            "rate": "0.28956",
-            "adj": "0.07884",
+            "rate": "0.16402",
+            "adj": "0.155111",
             "max": null,
             "max_unit": "kWh",
             "sell": null
@@ -32,15 +32,15 @@
       {
         "tiers": [
           {
-            "rate": "0.28956",
-            "adj": "0.07884",
+            "rate": "0.16402",
+            "adj": "0.155111",
             "max": "250",
             "max_unit": "kWh",
             "sell": null
           },
           {
-            "rate": "0.31367",
-            "adj": "0.07884",
+            "rate": "0.18858",
+            "adj": "0.155111",
             "max": null,
             "max_unit": "kWh",
             "sell": null
@@ -682,18 +682,187 @@
   },
   "fixed_charges": [
     {
-      "amount": "20",
+      "amount": "21.00",
       "unit": "$/month"
     }
   ],
   "min_charge": null,
   "unsupported": [],
   "metering": "net_metering",
-  "source_documents": [],
+  "source_documents": [
+    {
+      "url": "https://www.coned.com/-/media/files/coned/documents/rates/electric/psc-10/electric-tariff.pdf",
+      "role": "rate_sheet",
+      "source_type": "pdf_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://dps.ny.gov/system/files/documents/2026/01/con-edison-electric-rate-case-summary.pdf",
+      "role": "verification",
+      "source_type": "pdf_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://www.coned.com/-/media/files/coned/documents/rates/electric/psc-10/delivery/monthly-adjustment-clause/mac-202607.pdf",
+      "role": "verification",
+      "source_type": "pdf_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://www.coned.com/-/media/files/coned/documents/rates/electric/psc-10/supply/msc-cap/msccap-202607.pdf",
+      "role": "verification",
+      "source_type": "pdf_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://www.coned.com/-/media/files/coned/documents/rates/electric/psc-10/supply/adjustment-factors-msc/mscadj-2023-present.pdf",
+      "role": "verification",
+      "source_type": "pdf_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://www.coned.com/-/media/files/coned/documents/rates/electric/psc-10/supply/merchant-function-charge/mfc-202601.pdf",
+      "role": "verification",
+      "source_type": "pdf_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://www.coned.com/-/media/files/coned/documents/rates/electric/psc-10/supply/clean-energy-standard-supply/cess-202504.pdf",
+      "role": "verification",
+      "source_type": "pdf_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://www.coned.com/-/media/files/coned/documents/rates/electric/psc-10/delivery/system-benefits-charge/sbc-202501.pdf",
+      "role": "verification",
+      "source_type": "pdf_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://www.coned.com/-/media/files/coned/documents/rates/electric/psc-10/delivery/clean-energy-standard-delivery/cesd-202602.pdf",
+      "role": "verification",
+      "source_type": "pdf_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://www.coned.com/-/media/files/coned/documents/rates/electric/psc-10/delivery/revenue-decoupling-mechanism/rdm-202508.pdf",
+      "role": "verification",
+      "source_type": "pdf_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://www.coned.com/-/media/files/coned/documents/rates/electric/psc-10/delivery/delivery-revenue-surcharge/sdr-202602.pdf",
+      "role": "verification",
+      "source_type": "pdf_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://www.coned.com/-/media/files/coned/documents/rates/electric/psc-10/delivery/vder-value-stack-cost-recovery/vder-cr-202512.pdf",
+      "role": "verification",
+      "source_type": "pdf_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://www.coned.com/-/media/files/coned/documents/save-energy-money/using-private-generation/historical-average-full-service-electric-rates.pdf",
+      "role": "verification",
+      "source_type": "pdf_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://www.coned.com/-/media/files/coned/documents/rates/electric/average-monthly-electric-bills.pdf",
+      "role": "verification",
+      "source_type": "pdf_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    }
+  ],
   "provenance": {
     "urdb_label": "67b4e33e7abe0c080a0b1171",
     "urdb_latest_update": "2025-02-18",
-    "last_verified": null,
+    "last_verified": "2026-07-01",
     "confidence": null,
     "snapshot_sha256": null
   }

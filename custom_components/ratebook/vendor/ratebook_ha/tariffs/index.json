@@ -1,0 +1,130 @@
+[
+  {
+    "slug": "aps-r-tou-e",
+    "label": "APS \u2014 R-TOU-E Time-of-Use 4-7pm (AZ)"
+  },
+  {
+    "slug": "coned-sc-1-tod-rate-iii-nyc",
+    "label": "Con Edison \u2014 SC-1 Rate III Time-of-Use, NYC (NY)"
+  },
+  {
+    "slug": "coned-sc-1-residential-nyc",
+    "label": "Con Edison \u2014 SC-1 Residential, NYC (NY)"
+  },
+  {
+    "slug": "dominion-va-schedule-1",
+    "label": "Dominion Energy \u2014 Schedule 1 Residential (VA)"
+  },
+  {
+    "slug": "dominion-va-schedule-1t",
+    "label": "Dominion Energy \u2014 Schedule 1T Time-of-Use (VA)"
+  },
+  {
+    "slug": "dte-d1-residential-full-service",
+    "label": "DTE \u2014 D1 Residential (MI)"
+  },
+  {
+    "slug": "dte-d1-2-residential-time-of-day",
+    "label": "DTE \u2014 D1.2 Time of Day 11am-7pm (MI)"
+  },
+  {
+    "slug": "duke-carolinas-rs",
+    "label": "Duke Energy Carolinas \u2014 RS Residential (NC)"
+  },
+  {
+    "slug": "eversource-ct-rate-1",
+    "label": "Eversource \u2014 Rate 1 Residential (CT)"
+  },
+  {
+    "slug": "eversource-ct-rate-7-tou",
+    "label": "Eversource \u2014 Rate 7 Time-of-Day (CT)"
+  },
+  {
+    "slug": "fpl-rs-1",
+    "label": "FPL \u2014 RS-1 Residential (FL)"
+  },
+  {
+    "slug": "fpl-rtr-1",
+    "label": "FPL \u2014 RTR-1 Time-of-Use (FL)"
+  },
+  {
+    "slug": "flat-residential",
+    "label": "Generic \u2014 Flat-rate example"
+  },
+  {
+    "slug": "generic-tou",
+    "label": "Generic \u2014 Time-of-Use example (peak 4-9pm)"
+  },
+  {
+    "slug": "georgia-power-r-30",
+    "label": "Georgia Power \u2014 R-31 Residential (GA)"
+  },
+  {
+    "slug": "georgia-power-tou-oa-14",
+    "label": "Georgia Power \u2014 TOU-OA-14 Overnight Advantage (GA)"
+  },
+  {
+    "slug": "national-grid-ma-r1",
+    "label": "National Grid \u2014 R-1 Residential (MA)"
+  },
+  {
+    "slug": "peco-rate-r-residential",
+    "label": "PECO \u2014 Rate R Residential (PA)"
+  },
+  {
+    "slug": "peco-rate-r-tou",
+    "label": "PECO \u2014 Rate R Time-of-Use (PA)"
+  },
+  {
+    "slug": "pge-e-1",
+    "label": "PG&E \u2014 E-1 Tiered (CA)"
+  },
+  {
+    "slug": "pge-e-tou-c",
+    "label": "PG&E \u2014 E-TOU-C Time-of-Use 4-9pm (CA)"
+  },
+  {
+    "slug": "pge-ev2-a",
+    "label": "PG&E \u2014 EV2-A Home Charging EV (CA)"
+  },
+  {
+    "slug": "pseg-rs-residential-service",
+    "label": "PSE&G \u2014 RS Residential (NJ)"
+  },
+  {
+    "slug": "pseg-rs-tou-3p",
+    "label": "PSE&G \u2014 RS-TOU-3P Time-of-Use (NJ)"
+  },
+  {
+    "slug": "sce-domestic-d",
+    "label": "SCE \u2014 Domestic D Tiered (CA)"
+  },
+  {
+    "slug": "sce-tou-d-4-9pm",
+    "label": "SCE \u2014 TOU-D-4-9PM Time-of-Use (CA)"
+  },
+  {
+    "slug": "sce-tou-d-prime",
+    "label": "SCE \u2014 TOU-D-PRIME EV/Electrification (CA)"
+  },
+  {
+    "slug": "sdge-ev-tou-5",
+    "label": "SDG&E \u2014 EV-TOU-5 (CA)"
+  },
+  {
+    "slug": "sdge-tou-dr-1",
+    "label": "SDG&E \u2014 TOU-DR1 Time-of-Use (CA)"
+  },
+  {
+    "slug": "srp-e-23-basic",
+    "label": "SRP \u2014 E-23 Basic (AZ)"
+  },
+  {
+    "slug": "srp-e-26-tou",
+    "label": "SRP \u2014 E-26 Time-of-Use (AZ)"
+  },
+  {
+    "slug": "xcel-psco-re-tou",
+    "label": "Xcel Energy \u2014 RE-TOU (CO)"
+  }
+]

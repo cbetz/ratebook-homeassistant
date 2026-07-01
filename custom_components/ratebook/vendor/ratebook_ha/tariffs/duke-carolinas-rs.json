@@ -3,15 +3,15 @@
   "identity": {
     "utility_id": "Duke Energy Carolinas, LLC",
     "eiaid": 5416,
-    "jurisdiction": null,
-    "plan_code": "",
+    "jurisdiction": "NC",
+    "plan_code": "RS",
     "plan_name": "RS (Residential Service)",
     "sector": "residential",
-    "is_default_plan": null,
-    "tariff_type": "unknown"
+    "is_default_plan": true,
+    "tariff_type": "bundled"
   },
   "effective_range": {
-    "start": "2026-01-01",
+    "start": "2026-07-01",
     "end": null,
     "superseded_at": null,
     "scheduled_end": null
@@ -21,8 +21,8 @@
       {
         "tiers": [
           {
-            "rate": "0.122604",
-            "adj": "0.004951",
+            "rate": "0.122603",
+            "adj": "0.017806",
             "max": null,
             "max_unit": "kWh",
             "sell": null
@@ -664,18 +664,83 @@
   },
   "fixed_charges": [
     {
-      "amount": "14",
+      "amount": "14.00",
+      "unit": "$/month"
+    },
+    {
+      "amount": "1.37",
       "unit": "$/month"
     }
   ],
   "min_charge": null,
   "unsupported": [],
   "metering": "net_metering",
-  "source_documents": [],
+  "source_documents": [
+    {
+      "url": "https://www.duke-energy.com/-/media/pdfs/for-your-home/rates/electric-nc/ncschedulers.pdf",
+      "role": "rate_sheet",
+      "source_type": "pdf_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://www.duke-energy.com/-/media/pdfs/for-your-home/rates/electric-nc/ncridersummary.pdf",
+      "role": "verification",
+      "source_type": "pdf_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://www.duke-energy.com/-/media/pdfs/for-your-home/rates/electric-nc/ncridersts.pdf",
+      "role": "verification",
+      "source_type": "pdf_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://www.duke-energy.com/-/media/pdfs/for-your-home/rates/electric-nc/ncriderceps.pdf",
+      "role": "verification",
+      "source_type": "pdf_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://www.duke-energy.com/-/media/pdfs/for-your-home/rates/electric-nc/ncrideredit4.pdf",
+      "role": "verification",
+      "source_type": "pdf_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    }
+  ],
   "provenance": {
     "urdb_label": "6998c205a746c90e550cb23f",
     "urdb_latest_update": "2026-02-20",
-    "last_verified": null,
+    "last_verified": "2026-07-01",
     "confidence": null,
     "snapshot_sha256": null
   }

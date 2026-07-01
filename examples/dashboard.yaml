@@ -1,0 +1,71 @@
+# Example Home Assistant dashboard for Ratebook
+#
+# How to use: Settings -> Dashboards -> Add dashboard -> "New dashboard from scratch" -> give it a
+# title -> Create. Open it, then (top-right) pencil/Edit -> 3-dot menu -> "Raw configuration editor"
+# -> select all, delete, paste this, Save.
+#
+# Every card below is BUILT-IN (no HACS / no extra installs). The fancy hourly price-curve chart
+# is optional and commented at the bottom — it needs the "apexcharts-card" frontend from HACS.
+
+title: Electricity
+views:
+  - title: Electricity
+    path: electricity
+    icon: mdi:transmission-tower
+    cards:
+      - type: gauge
+        entity: sensor.ratebook_electricity_price
+        name: Price now ($/kWh)
+        min: 0
+        max: 0.5
+        needle: true
+        severity:
+          green: 0
+          yellow: 0.18
+          red: 0.30
+
+      - type: glance
+        title: Ratebook
+        entities:
+          - entity: sensor.ratebook_electricity_price
+            name: Price now
+          - entity: sensor.ratebook_cheapest_charge_window
+            name: Cheapest charge starts
+
+      - type: entities
+        title: Cheapest charge window (next 24h)
+        entities:
+          - entity: sensor.ratebook_cheapest_charge_window
+            name: Starts
+          - type: attribute
+            entity: sensor.ratebook_cheapest_charge_window
+            attribute: end
+            name: Ends
+          - type: attribute
+            entity: sensor.ratebook_cheapest_charge_window
+            attribute: avg_rate
+            name: Average rate ($/kWh)
+          - type: attribute
+            entity: sensor.ratebook_cheapest_charge_window
+            attribute: hours
+            name: Length (hours)
+
+      - type: history-graph
+        title: Price history
+        hours_to_show: 24
+        entities:
+          - sensor.ratebook_electricity_price
+
+# Optional — today's hourly price curve. Install "apexcharts-card" from HACS, then uncomment:
+#      - type: custom:apexcharts-card
+#        header:
+#          show: true
+#          title: Today's electricity price ($/kWh)
+#        graph_span: 24h
+#        span:
+#          start: day
+#        series:
+#          - entity: sensor.ratebook_electricity_price
+#            type: area
+#            data_generator: |
+#              return (entity.attributes.today || []).map(p => [new Date(p.start).getTime(), p.price]);

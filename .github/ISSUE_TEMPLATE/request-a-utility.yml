@@ -1,0 +1,40 @@
+name: Request a utility / plan
+description: Ask for your utility's rate plan to be added to the bundled dataset (usually ships within days).
+title: "[Utility request] "
+labels: ["tariff-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Three fields and you're done — a link to the official rate sheet is the only thing
+        that really matters. New tariffs are engine-validated and cross-checked before they
+        ship in the Home Assistant bundle.
+  - type: input
+    id: utility
+    attributes:
+      label: Utility
+      description: The utility's name and state.
+      placeholder: e.g. Austin Energy (TX)
+    validations:
+      required: true
+  - type: input
+    id: plan
+    attributes:
+      label: Plan name / code
+      description: As it appears on your bill.
+      placeholder: e.g. Residential Time-of-Use, Schedule RT
+    validations:
+      required: true
+  - type: input
+    id: rate-sheet
+    attributes:
+      label: Rate sheet link
+      description: URL of the utility's official rate schedule (PDF or rates page).
+      placeholder: https://…
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything unusual?
+      description: Optional — seasonal changes, EV plan, baseline territories, holiday rules, third-party supplier, etc.

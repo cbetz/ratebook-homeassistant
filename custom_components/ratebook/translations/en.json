@@ -3,30 +3,49 @@
     "step": {
       "user": {
         "title": "Ratebook",
-        "description": "Choose a bundled example tariff or paste a Ratebook tariff JSON, then set the charge-window length.",
+        "description": "Pick your utility's plan from the bundled real US tariffs, or paste a Ratebook tariff JSON. On tiered plans (PG&E, SCE, ConEd…), pick the tier your household usually lands in so prices match your bill.",
         "data": {
-          "tariff_source": "Tariff",
-          "tariff_json": "Custom tariff JSON (used only when Tariff is \"custom\")",
+          "tariff_source": "Utility plan",
+          "tariff_json": "Custom tariff JSON (used only when Utility plan is \"Custom\")",
+          "tier": "Usage tier (tiered plans only)",
           "charge_hours": "Charge-window length (hours)",
           "currency": "Currency"
+        },
+        "data_description": {
+          "tariff_source": "Utility not listed? Open a \"Request a utility\" issue on GitHub and it can usually be added within days.",
+          "tier": "Tier 1 = within your baseline allowance. If your bill regularly shows tier 2/3 usage, pick that tier — marginal prices differ by 25-50% on some plans."
         }
       },
       "reconfigure": {
         "title": "Reconfigure Ratebook",
-        "description": "Switch the tariff, charge-window length, or currency.",
+        "description": "Switch the utility plan, usage tier, charge-window length, or currency.",
         "data": {
-          "tariff_source": "Tariff",
-          "tariff_json": "Custom tariff JSON (used only when Tariff is \"custom\")",
+          "tariff_source": "Utility plan",
+          "tariff_json": "Custom tariff JSON (used only when Utility plan is \"Custom\")",
+          "tier": "Usage tier (tiered plans only)",
           "charge_hours": "Charge-window length (hours)",
           "currency": "Currency"
+        },
+        "data_description": {
+          "tariff_source": "Utility not listed? Open a \"Request a utility\" issue on GitHub and it can usually be added within days.",
+          "tier": "Tier 1 = within your baseline allowance. If your bill regularly shows tier 2/3 usage, pick that tier — marginal prices differ by 25-50% on some plans."
         }
       }
     },
     "error": {
-      "invalid_tariff": "That tariff could not be loaded. Check the JSON, or pick a bundled tariff."
+      "invalid_tariff": "That tariff could not be loaded. Check the JSON, or pick a bundled utility plan."
     },
     "abort": {
       "reconfigure_successful": "Ratebook was reconfigured."
+    }
+  },
+  "selector": {
+    "tier": {
+      "options": {
+        "1": "Tier 1 — within baseline allowance",
+        "2": "Tier 2 — above baseline",
+        "3": "Tier 3 — high usage"
+      }
     }
   },
   "entity": {

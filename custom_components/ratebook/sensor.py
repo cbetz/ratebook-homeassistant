@@ -51,6 +51,11 @@ class RatebookPriceSensor(_RatebookEntity):
     _attr_translation_key = "electricity_price"
     _attr_state_class = SensorStateClass.MEASUREMENT
     _attr_suggested_display_precision = 5
+    # The schedule attributes are ~150 dicts recomputed every 5 minutes — live for
+    # automations/templates but excluded from the recorder so they don't bloat history.
+    _unrecorded_attributes = frozenset(
+        {"today", "tomorrow", "raw_today", "raw_tomorrow", "forecast"}
+    )
 
     def __init__(self, coordinator: RatebookCoordinator, entry: RatebookConfigEntry) -> None:
         super().__init__(coordinator, entry)
@@ -66,14 +71,24 @@ class RatebookPriceSensor(_RatebookEntity):
         return {
             "today": self.coordinator.data["today"],
             "tomorrow": self.coordinator.data["tomorrow"],
+            # Nordpool-shaped [{start, end, value}] so existing price automations,
+            # blueprints, and ApexCharts configs work unchanged — and unlike day-ahead
+            # markets, tomorrow's prices are known all day.
+            "raw_today": self.coordinator.data["raw_today"],
+            "raw_tomorrow": self.coordinator.data["raw_tomorrow"],
+            "tomorrow_valid": True,
             # evcc-shaped [{start, end, value}] forecast for price-aware chargers.
             "forecast": self.coordinator.data["forecast"],
+            "today_is_holiday": self.coordinator.data["today_is_holiday"],
+            "tomorrow_is_holiday": self.coordinator.data["tomorrow_is_holiday"],
+            # 1-based tier this sensor prices at (tiered plans: 1 = within baseline).
+            "tier": self.coordinator.tier + 1,
             "currency": self.coordinator.currency,
         }
 
 
 class RatebookChargeWindowSensor(_RatebookEntity):
-    """Start time of the cheapest contiguous charge window over the next 24 hours."""
+    """Start time of the cheapest upcoming charge window (searched through end of tomorrow)."""
 
     _attr_translation_key = "cheapest_charge_window"
     _attr_device_class = SensorDeviceClass.TIMESTAMP

@@ -23,6 +23,7 @@ from dataclasses import dataclass, field
 from datetime import date, datetime, time, timedelta
 from decimal import Decimal
 from enum import StrEnum
+from functools import cache
 from math import ceil
 from typing import Any
 
@@ -33,6 +34,9 @@ from .schema import (
     DayType,
     EnergyPeriod,
     FixedChargeUnit,
+    Holiday,
+    HolidayObservance,
+    HolidayPolicy,
     MinChargeUnit,
     Tariff,
     TierMaxUnit,
@@ -207,10 +211,68 @@ def supported(tariff: Tariff, *, single_window: bool = True) -> SupportReport:
 
 
 # --------------------------------------------------------------------------------------
+# Holidays
+# --------------------------------------------------------------------------------------
+def _nth_weekday(year: int, month: int, weekday: int, n: int) -> date:
+    """The n-th (1-based) given weekday (Mon=0) of a month."""
+    first = date(year, month, 1)
+    offset = (weekday - first.weekday()) % 7
+    return first + timedelta(days=offset + 7 * (n - 1))
+
+
+def _last_weekday(year: int, month: int, weekday: int) -> date:
+    last = date(year, month, calendar.monthrange(year, month)[1])
+    return last - timedelta(days=(last.weekday() - weekday) % 7)
+
+
+_HOLIDAY_RULE = {
+    Holiday.NEW_YEARS_DAY: lambda y: date(y, 1, 1),
+    Holiday.MLK_DAY: lambda y: _nth_weekday(y, 1, 0, 3),
+    Holiday.WASHINGTONS_BIRTHDAY: lambda y: _nth_weekday(y, 2, 0, 3),
+    Holiday.MEMORIAL_DAY: lambda y: _last_weekday(y, 5, 0),
+    Holiday.JUNETEENTH: lambda y: date(y, 6, 19),
+    Holiday.INDEPENDENCE_DAY: lambda y: date(y, 7, 4),
+    Holiday.LABOR_DAY: lambda y: _nth_weekday(y, 9, 0, 1),
+    Holiday.COLUMBUS_DAY: lambda y: _nth_weekday(y, 10, 0, 2),
+    Holiday.VETERANS_DAY: lambda y: date(y, 11, 11),
+    Holiday.THANKSGIVING: lambda y: _nth_weekday(y, 11, 3, 4),
+    Holiday.DAY_AFTER_THANKSGIVING: lambda y: _nth_weekday(y, 11, 3, 4) + timedelta(days=1),
+    Holiday.CHRISTMAS: lambda y: date(y, 12, 25),
+}
+
+
+@cache
+def holiday_dates(
+    year: int,
+    holidays: tuple[Holiday, ...],
+    observance: HolidayObservance = HolidayObservance.SUNDAY_TO_MONDAY,
+) -> frozenset[date]:
+    """The calendar dates the named ``holidays`` land on in ``year``.
+
+    With ``sunday_to_monday`` observance a Sunday holiday also marks the following Monday
+    (the prevailing utility rule); the Sunday itself already prices as a weekend day.
+    """
+    out: set[date] = set()
+    for h in holidays:
+        d = _HOLIDAY_RULE[h](year)
+        out.add(d)
+        if observance is HolidayObservance.SUNDAY_TO_MONDAY and d.weekday() == 6:
+            out.add(d + timedelta(days=1))
+    return frozenset(out)
+
+
+# --------------------------------------------------------------------------------------
 # Internals
 # --------------------------------------------------------------------------------------
 def _day_type(tariff: Tariff, day: date) -> DayType:
-    # URDB has no holiday dimension; v0 treats every day by its real weekday/weekend.
+    sched = tariff.schedule
+    if (
+        sched.holiday_policy is HolidayPolicy.AS_WEEKEND
+        and sched.holidays
+        and day in holiday_dates(day.year, sched.holidays, sched.holiday_observance)
+    ):
+        return DayType.WEEKEND
+    # ``as_weekday`` and ``unknown`` price every day by its real weekday/weekend.
     return DayType.WEEKEND if day.weekday() >= 5 else DayType.WEEKDAY
 
 
@@ -277,8 +339,10 @@ def _warnings_for(tariff: Tariff) -> tuple[str, ...]:
         out.append("net_metering_not_modeled")
     if any(t.sell for p in tariff.energy.periods for t in p.tiers):
         out.append("sell_rate_not_modeled")
-    if tariff.schedule.holiday_policy.value != "unknown":
-        out.append("holiday_policy_ignored_in_v0")
+    if tariff.schedule.holiday_policy is HolidayPolicy.AS_WEEKEND and not tariff.schedule.holidays:
+        # The rate sheet defines holiday treatment but the dates aren't enumerated yet, so
+        # holidays still price on the regular weekday schedule.
+        out.append("holidays_not_enumerated")
     # Stable, de-duplicated ordering for deterministic output.
     return tuple(dict.fromkeys(out))
 
@@ -537,7 +601,7 @@ def hourly_marginal_prices(
     for day in window.iter_days():
         for hour in range(24):
             tiers = tariff.energy.periods[_period_at(tariff, day, hour)].tiers
-            prices.append(tiers[min(tier, len(tiers) - 1)].effective_rate)
+            prices.append(tiers[max(0, min(tier, len(tiers) - 1))].effective_rate)
     return tuple(prices)
 
 

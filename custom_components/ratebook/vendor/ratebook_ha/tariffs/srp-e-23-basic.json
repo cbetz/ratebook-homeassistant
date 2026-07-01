@@ -7,14 +7,14 @@
     "plan_code": "",
     "plan_name": "E-23 Tier 1 BASIC PRICE PLAN FOR RESIDENTIAL SERVICE",
     "sector": "residential",
-    "is_default_plan": null,
-    "tariff_type": "unknown"
+    "is_default_plan": true,
+    "tariff_type": "bundled"
   },
   "effective_range": {
-    "start": "2026-01-01",
+    "start": "2026-05-01",
     "end": null,
     "superseded_at": null,
-    "scheduled_end": null
+    "scheduled_end": "2026-11-01"
   },
   "energy": {
     "periods": [
@@ -22,7 +22,7 @@
         "tiers": [
           {
             "rate": "0.1204",
-            "adj": "0",
+            "adj": "-0.0038",
             "max": null,
             "max_unit": "kWh",
             "sell": null
@@ -33,7 +33,7 @@
         "tiers": [
           {
             "rate": "0.1398",
-            "adj": "0",
+            "adj": "-0.0038",
             "max": null,
             "max_unit": "kWh",
             "sell": null
@@ -693,11 +693,48 @@
   "min_charge": null,
   "unsupported": [],
   "metering": "net_billing",
-  "source_documents": [],
+  "source_documents": [
+    {
+      "url": "https://www.srpnet.com/assets/srpnet/pdf/price-plans/2025-Ratebook-with-Temporary-FPPAM.pdf",
+      "role": "rate_sheet",
+      "source_type": "pdf_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://www.srpnet.com/assets/srpnet/pdf/price-plans/FY26/TCA%20Ratebooks/2025%20Ratebook%20E-23%20with%20TCA.pdf",
+      "role": "verification",
+      "source_type": "pdf_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://media.srpnet.com/srp-board-of-directors-approves-temporary-summer-rate-decrease/",
+      "role": "verification",
+      "source_type": "html_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    }
+  ],
   "provenance": {
     "urdb_label": "69a1b8bf40140c3bb007f1bd",
     "urdb_latest_update": "2026-02-27",
-    "last_verified": null,
+    "last_verified": "2026-07-01",
     "confidence": null,
     "snapshot_sha256": null
   }

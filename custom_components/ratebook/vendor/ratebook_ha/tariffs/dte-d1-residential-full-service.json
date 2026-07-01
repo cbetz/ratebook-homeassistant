@@ -3,12 +3,12 @@
   "identity": {
     "utility_id": "DTE Electric",
     "eiaid": 5109,
-    "jurisdiction": null,
-    "plan_code": "",
-    "plan_name": "Residential Service Rate - (Full Service) - D1",
+    "jurisdiction": "MI",
+    "plan_code": "D1",
+    "plan_name": "Residential Service Rate - Non-Transmitting Meter (D1)",
     "sector": "residential",
-    "is_default_plan": null,
-    "tariff_type": "unknown"
+    "is_default_plan": false,
+    "tariff_type": "bundled"
   },
   "effective_range": {
     "start": "2026-04-01",
@@ -24,14 +24,14 @@
             "rate": "0.18508",
             "adj": "0.030176",
             "max": "17",
-            "max_unit": "kWh",
+            "max_unit": "kWh daily",
             "sell": null
           },
           {
             "rate": "0.19807",
             "adj": "0.030176",
             "max": null,
-            "max_unit": "kWh",
+            "max_unit": "kWh daily",
             "sell": null
           }
         ]
@@ -678,11 +678,84 @@
   "min_charge": null,
   "unsupported": [],
   "metering": "none",
-  "source_documents": [],
+  "source_documents": [
+    {
+      "url": "https://www.dteenergy.com/content/dam/dteenergy/deg/website/residential/Service-Request/pricing/residential-pricing-options/ResidentialElectricRateCard.pdf",
+      "role": "rate_sheet",
+      "source_type": "pdf_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://www.michigan.gov/mpsc/-/media/Project/Websites/mpsc/consumer/rate-books/electric/dte/dtee1cura1throughc.pdf?rev=83099f0dfd4a401eaceefcd1838dcfea&hash=A293D133A3257BDE751F4AE9930C1A80",
+      "role": "verification",
+      "source_type": "pdf_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://www.michigan.gov/mpsc/-/media/Project/Websites/mpsc/consumer/rate-books/electric/dte/dtee1curd1throughend.pdf?rev=739604a251f74bfa8565b908f60da7a7&hash=131F4B90B155141B0463B41C04C1708A",
+      "role": "verification",
+      "source_type": "pdf_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://mi-psc.my.site.com/sfc/servlet.shepherd/version/download/068cs00001msfYLAAY",
+      "role": "verification",
+      "source_type": "html_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://www.michigan.gov/mpsc/commission/news-releases/2026/02/19/commission-approves-additional-242m-for-dte-electric-grid-upgrades",
+      "role": "verification",
+      "source_type": "html_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://www.michigan.gov/mpsc/consumer/electricity/data-price/electric-rate-books/mpsc-approved-dte-electric-rate-books-and-cancelled-sheets",
+      "role": "verification",
+      "source_type": "html_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    }
+  ],
   "provenance": {
     "urdb_label": "69e681d00b9e1bb34f0912d9",
     "urdb_latest_update": "2026-04-20",
-    "last_verified": null,
+    "last_verified": "2026-07-01",
     "confidence": null,
     "snapshot_sha256": null
   }

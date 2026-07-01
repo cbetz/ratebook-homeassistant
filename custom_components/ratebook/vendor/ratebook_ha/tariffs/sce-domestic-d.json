@@ -4,14 +4,14 @@
     "utility_id": "Southern California Edison Co",
     "eiaid": 17609,
     "jurisdiction": null,
-    "plan_code": "",
+    "plan_code": "D",
     "plan_name": "Domestic Service: D - Baseline Region 5",
     "sector": "residential",
     "is_default_plan": null,
-    "tariff_type": "unknown"
+    "tariff_type": "bundled"
   },
   "effective_range": {
-    "start": "2024-06-01",
+    "start": "2026-06-01",
     "end": null,
     "superseded_at": null,
     "scheduled_end": null
@@ -21,22 +21,22 @@
       {
         "tiers": [
           {
-            "rate": "0.33398",
-            "adj": "0.00188",
+            "rate": "0.30214",
+            "adj": "0",
             "max": "18.4",
             "max_unit": "kWh daily",
             "sell": null
           },
           {
-            "rate": "0.4299",
-            "adj": "0.00188",
+            "rate": "0.40313",
+            "adj": "0",
             "max": "73.6",
             "max_unit": "kWh daily",
             "sell": null
           },
           {
-            "rate": "0.4299",
-            "adj": "0.00188",
+            "rate": "0.40313",
+            "adj": "0",
             "max": null,
             "max_unit": "kWh daily",
             "sell": null
@@ -46,22 +46,22 @@
       {
         "tiers": [
           {
-            "rate": "0.33398",
-            "adj": "0.00188",
+            "rate": "0.30214",
+            "adj": "0",
             "max": "17",
             "max_unit": "kWh daily",
             "sell": null
           },
           {
-            "rate": "0.4299",
-            "adj": "0.00188",
+            "rate": "0.40313",
+            "adj": "0",
             "max": "68",
             "max_unit": "kWh daily",
             "sell": null
           },
           {
-            "rate": "0.4299",
-            "adj": "0.00188",
+            "rate": "0.40313",
+            "adj": "0",
             "max": null,
             "max_unit": "kWh daily",
             "sell": null
@@ -703,21 +703,79 @@
   },
   "fixed_charges": [
     {
-      "amount": "0.031",
+      "amount": "0.794",
       "unit": "$/day"
     }
   ],
-  "min_charge": {
-    "amount": "0.346",
-    "unit": "$/day"
-  },
+  "min_charge": null,
   "unsupported": [],
   "metering": "none",
-  "source_documents": [],
+  "source_documents": [
+    {
+      "url": "https://edisonintl.sharepoint.com/teams/Public/TM2/Shared%20Documents/Public/Regulatory/Tariff-SCE%20Tariff%20Books/Electric/Schedules/Residential%20Rates/ELECTRIC_SCHEDULES_D.pdf (Schedule D, Cal. P.U.C. Sheets 91130-E/91131-E, Advice 5829-E, effective 2026-06-01; Sheet 4 holiday/season conditions 90636-E; direct URL requires MS login \u2014 reachable anonymously via the 'Residential Rates' share link on sce.com/regulatory/regulatory-information/tariff-books/rates-pricing-choices: https://edisonintl.sharepoint.com/:f:/t/Public/TM2/EuKm76K33QlGkEKxS2ZVy8EBNSTo2UjsnzEMOxsP8ISRKg)",
+      "role": "rate_sheet",
+      "source_type": "pdf_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://www.sce.com/save-money/rates-financing/residential-rate-plans/tiered-rate-plan (rates as of 6/1/26: Tier 1 ~30c, Tier 2 ~40c, 79c/day Base Services Charge; Region 5 baseline 17.0 summer / 18.4 winter kWh/day)",
+      "role": "verification",
+      "source_type": "html_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://www.sce.com/save-money/rates-financing/sce-rate-advisory (June 1, 2026 rate change, Advice 5760-E context)",
+      "role": "verification",
+      "source_type": "html_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://3cenergy.org/wp-content/uploads/2026/02/Residential-SCE-Website-Rate-Sheet-v3-2026.02.15.pdf (cross-check: SCE Domestic bundled generation 0.11761 $/kWh; WFC 0.00591, FRC 0.00619 for Domestic rate group)",
+      "role": "verification",
+      "source_type": "pdf_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://www.sce.com/customer-service-center/community-choice-aggregation/sce-sbce-joint-rate-comparisons (cross-check: SCE Schedule D bundled avg 0.38589 $/kWh = 0.26828 delivery + 0.11761 generation at 424 kWh, as of Jan 1, 2026)",
+      "role": "verification",
+      "source_type": "html_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    }
+  ],
   "provenance": {
     "urdb_label": "66cc9e270d535cf5c3058518",
     "urdb_latest_update": "2024-08-29",
-    "last_verified": null,
+    "last_verified": "2026-07-01",
     "confidence": null,
     "snapshot_sha256": null
   }

@@ -4,10 +4,10 @@
     "utility_id": "San Diego Gas & Electric Co",
     "eiaid": 16609,
     "jurisdiction": null,
-    "plan_code": "TOU-DR1",
-    "plan_name": "TOU-DR-1 Coastal Baseline Region",
+    "plan_code": "EV-TOU-5",
+    "plan_name": "EV-TOU-5 Domestic Time-of-Use for Households with Electric Vehicles",
     "sector": "residential",
-    "is_default_plan": true,
+    "is_default_plan": false,
     "tariff_type": "bundled"
   },
   "effective_range": {
@@ -21,17 +21,10 @@
       {
         "tiers": [
           {
-            "rate": "0.68459",
-            "adj": "-0.10663",
-            "max": "9",
-            "max_unit": "kWh daily",
-            "sell": null
-          },
-          {
-            "rate": "0.68459",
+            "rate": "0.79321",
             "adj": "0",
             "max": null,
-            "max_unit": "kWh daily",
+            "max_unit": "kWh",
             "sell": null
           }
         ]
@@ -39,17 +32,10 @@
       {
         "tiers": [
           {
-            "rate": "0.46392",
-            "adj": "-0.10663",
-            "max": "9",
-            "max_unit": "kWh daily",
-            "sell": null
-          },
-          {
-            "rate": "0.46392",
+            "rate": "0.49613",
             "adj": "0",
             "max": null,
-            "max_unit": "kWh daily",
+            "max_unit": "kWh",
             "sell": null
           }
         ]
@@ -57,17 +43,10 @@
       {
         "tiers": [
           {
-            "rate": "0.37660",
-            "adj": "-0.10663",
-            "max": "9",
-            "max_unit": "kWh daily",
-            "sell": null
-          },
-          {
-            "rate": "0.37660",
+            "rate": "0.12852",
             "adj": "0",
             "max": null,
-            "max_unit": "kWh daily",
+            "max_unit": "kWh",
             "sell": null
           }
         ]
@@ -75,17 +54,10 @@
       {
         "tiers": [
           {
-            "rate": "0.61014",
-            "adj": "-0.10663",
-            "max": "9.2",
-            "max_unit": "kWh daily",
-            "sell": null
-          },
-          {
-            "rate": "0.61014",
+            "rate": "0.52292",
             "adj": "0",
             "max": null,
-            "max_unit": "kWh daily",
+            "max_unit": "kWh",
             "sell": null
           }
         ]
@@ -93,17 +65,10 @@
       {
         "tiers": [
           {
-            "rate": "0.52843",
-            "adj": "-0.10663",
-            "max": "9.2",
-            "max_unit": "kWh daily",
-            "sell": null
-          },
-          {
-            "rate": "0.52843",
+            "rate": "0.46639",
             "adj": "0",
             "max": null,
-            "max_unit": "kWh daily",
+            "max_unit": "kWh",
             "sell": null
           }
         ]
@@ -111,17 +76,10 @@
       {
         "tiers": [
           {
-            "rate": "0.43767",
-            "adj": "-0.10663",
-            "max": "9.2",
-            "max_unit": "kWh daily",
-            "sell": null
-          },
-          {
-            "rate": "0.43767",
+            "rate": "0.12115",
             "adj": "0",
             "max": null,
-            "max_unit": "kWh daily",
+            "max_unit": "kWh",
             "sell": null
           }
         ]
@@ -777,96 +735,48 @@
   ],
   "min_charge": null,
   "unsupported": [],
-  "metering": "net_metering",
+  "metering": "none",
   "source_documents": [
     {
-      "url": "https://www.sdge.com/sites/default/files/regulatory/6-1-26%20Schedule%20TOU-DR1%20Total%20Rates%20Table.pdf",
+      "url": "https://www.sdge.com/sites/default/files/regulatory/6-1-26%20Schedule%20EV-TOU-5%20Total%20Rates%20Table.pdf",
       "role": "rate_sheet",
       "source_type": "pdf_url",
-      "sha256": null,
+      "sha256": "8054ad0b35bba4bb870d180034e4b96de5dec2d4bff67e44f37586a154f962d2",
       "fetched_at": "2026-07-01",
-      "http_status": null,
-      "content_type": null,
-      "fetch_method": null,
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "fetch_method": "curl",
       "revision_token": null,
-      "locator": null
+      "locator": "Schedule EV-TOU-5 Total Electric Rate column, effective 6/1/2026"
     },
     {
-      "url": "https://www.sdge.com/sites/default/files/regulatory/1-1-26%20Schedule%20TOU-DR1%20Total%20Rates%20Table.pdf",
-      "role": "verification",
-      "source_type": "pdf_url",
-      "sha256": null,
-      "fetched_at": "2026-07-01",
-      "http_status": null,
-      "content_type": null,
-      "fetch_method": null,
-      "revision_token": null,
-      "locator": null
-    },
-    {
-      "url": "https://www.sdge.com/residential/pricing-plans/about-our-pricing-plans/whenmatters",
-      "role": "verification",
+      "url": "https://www.sdge.com/residential/pricing-plans/about-our-pricing-plans/electric-vehicle-plans",
+      "role": "tou_windows",
       "source_type": "html_url",
       "sha256": null,
       "fetched_at": "2026-07-01",
-      "http_status": null,
-      "content_type": null,
-      "fetch_method": null,
+      "http_status": 200,
+      "content_type": "text/html",
+      "fetch_method": "webfetch",
       "revision_token": null,
-      "locator": null
+      "locator": "EV-TOU-5 clock diagram: weekday vs weekend/holiday TOU windows, holiday list"
     },
     {
       "url": "https://www.sdge.com/super-off-peak-residential",
-      "role": "verification",
+      "role": "schedule_change",
       "source_type": "html_url",
       "sha256": null,
       "fetched_at": "2026-07-01",
-      "http_status": null,
-      "content_type": null,
-      "fetch_method": null,
+      "http_status": 200,
+      "content_type": "text/html",
+      "fetch_method": "webfetch",
       "revision_token": null,
-      "locator": null
-    },
-    {
-      "url": "https://www.sdge.com/sites/default/files/elec_elec-rules_erule1.pdf",
-      "role": "verification",
-      "source_type": "pdf_url",
-      "sha256": null,
-      "fetched_at": "2026-07-01",
-      "http_status": null,
-      "content_type": null,
-      "fetch_method": null,
-      "revision_token": null,
-      "locator": null
-    },
-    {
-      "url": "https://www.sdge.com/sites/default/files/elec_elec-scheds_tou-dr1.pdf",
-      "role": "verification",
-      "source_type": "pdf_url",
-      "sha256": null,
-      "fetched_at": "2026-07-01",
-      "http_status": null,
-      "content_type": null,
-      "fetch_method": null,
-      "revision_token": null,
-      "locator": null
-    },
-    {
-      "url": "https://www.kpbs.org/news/quality-of-life/2026/05/01/sdg-e-begins-year-round-off-peak-weekday-pricing",
-      "role": "verification",
-      "source_type": "html_url",
-      "sha256": null,
-      "fetched_at": "2026-07-01",
-      "http_status": null,
-      "content_type": null,
-      "fetch_method": null,
-      "revision_token": null,
-      "locator": null
+      "locator": "Year-round weekday 10 a.m.-2 p.m. super off-peak; applies to EV-TOU-5"
     }
   ],
   "provenance": {
-    "urdb_label": "6772cfc9b5f9d561220ececb",
-    "urdb_latest_update": "2024-12-30",
+    "urdb_label": null,
+    "urdb_latest_update": null,
     "last_verified": "2026-07-01",
     "confidence": null,
     "snapshot_sha256": null

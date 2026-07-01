@@ -15,9 +15,11 @@ from .const import (
     CONF_CURRENCY,
     CONF_TARIFF_JSON,
     CONF_TARIFF_SOURCE,
+    CONF_TIER,
     CUSTOM,
     DEFAULT_CHARGE_HOURS,
     DEFAULT_CURRENCY,
+    DEFAULT_TIER,
     DOMAIN,
     LOGGER,
 )
@@ -33,6 +35,11 @@ class RatebookCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         self.currency: str = entry.data.get(CONF_CURRENCY, DEFAULT_CURRENCY)
         self.charge_hours: int = entry.options.get(
             CONF_CHARGE_HOURS, entry.data.get(CONF_CHARGE_HOURS, DEFAULT_CHARGE_HOURS)
+        )
+        # 0-based tier index for the engine; the config stores the human 1-based choice.
+        # Clamped at 0 so a malformed stored value can never index tiers[-1] (the TOP tier).
+        self.tier: int = max(
+            0, int(entry.options.get(CONF_TIER, entry.data.get(CONF_TIER, DEFAULT_TIER))) - 1
         )
         # Loaded off the event loop in async_load_tariff() — reading bundled tariff files is
         # blocking I/O and must not run inside Home Assistant's async loop.
@@ -53,9 +60,10 @@ class RatebookCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         now = dt_util.now()
         today = now.date()
         tomorrow = today + timedelta(days=1)
+        tier = self.tier
         try:
             window = pricing.cheapest_window(
-                self._tariff, today, days=2, charge_hours=self.charge_hours, after=now
+                self._tariff, today, days=2, charge_hours=self.charge_hours, after=now, tier=tier
             )
         except Exception as err:  # malformed tariff / out-of-range
             raise UpdateFailed(f"price computation failed: {err}") from err
@@ -66,12 +74,19 @@ class RatebookCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         end = dt_util.parse_datetime(window["end"])
         forecast_start = now.replace(minute=0, second=0, microsecond=0)
         return {
-            "current_price": pricing.current_price(self._tariff, now),
-            "today": pricing.hourly_schedule(self._tariff, today),
-            "tomorrow": pricing.hourly_schedule(self._tariff, tomorrow),
+            "current_price": pricing.current_price(self._tariff, now, tier=tier),
+            "today": pricing.hourly_schedule(self._tariff, today, tier=tier),
+            "tomorrow": pricing.hourly_schedule(self._tariff, tomorrow, tier=tier),
+            # Nordpool-shaped [{start, end, value}] — the attribute format existing HA
+            # price automations, blueprints, and ApexCharts configs already consume.
+            # tz-aware like Nordpool's, so `as_datetime(start) <= now()` comparisons work.
+            "raw_today": pricing.nordpool_schedule(self._tariff, today, tier=tier, tz=tz),
+            "raw_tomorrow": pricing.nordpool_schedule(self._tariff, tomorrow, tier=tier, tz=tz),
             # evcc custom-tariff shape ([{start, end, value}]) for direct consumption by evcc's
             # http source pointed at this sensor via the Home Assistant REST API.
-            "forecast": pricing.evcc_forecast(self._tariff, forecast_start, 48),
+            "forecast": pricing.evcc_forecast(self._tariff, forecast_start, 48, tier=tier),
+            "today_is_holiday": pricing.is_holiday(self._tariff, today),
+            "tomorrow_is_holiday": pricing.is_holiday(self._tariff, tomorrow),
             "cheapest_window": {
                 "start": start.replace(tzinfo=tz) if start else None,
                 "end": end.replace(tzinfo=tz) if end else None,

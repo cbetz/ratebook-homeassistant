@@ -4,14 +4,14 @@
     "utility_id": "Pacific Gas & Electric Co",
     "eiaid": 14328,
     "jurisdiction": null,
-    "plan_code": "",
+    "plan_code": "E-1",
     "plan_name": "E-1 -Residential Service Baseline Region P",
     "sector": "residential",
     "is_default_plan": null,
-    "tariff_type": "unknown"
+    "tariff_type": "bundled"
   },
   "effective_range": {
-    "start": "2026-03-27",
+    "start": "2026-03-01",
     "end": null,
     "superseded_at": null,
     "scheduled_end": null
@@ -710,11 +710,36 @@
   "min_charge": null,
   "unsupported": [],
   "metering": "net_metering",
-  "source_documents": [],
+  "source_documents": [
+    {
+      "url": "https://www.pge.com/tariffs/assets/pdf/tariffbook/ELEC_SCHEDS_E-1.pdf (Schedule E-1, Sheet 1: Cal. P.U.C. Sheet 61362-E, Advice 7921-E, effective June 1, 2026; Sheets 2-6: Advice 7846-E, effective March 1, 2026 \u2014 fetched 2026-07-01)",
+      "role": "rate_sheet",
+      "source_type": "pdf_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    },
+    {
+      "url": "https://www.pge.com/tariffs/en/rate-information/electric-rates.html (PG&E electric tariff book index)",
+      "role": "verification",
+      "source_type": "html_url",
+      "sha256": null,
+      "fetched_at": "2026-07-01",
+      "http_status": null,
+      "content_type": null,
+      "fetch_method": null,
+      "revision_token": null,
+      "locator": null
+    }
+  ],
   "provenance": {
     "urdb_label": "69d92c23ac3477692606714c",
     "urdb_latest_update": "2026-04-10",
-    "last_verified": null,
+    "last_verified": "2026-07-01",
     "confidence": null,
     "snapshot_sha256": null
   }
